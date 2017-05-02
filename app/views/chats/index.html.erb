@@ -1,0 +1,8 @@
+<h1> All Channels </h1>
+<ul>
+  <% @channels.each do |channel| %>
+    <li>
+    <%= link_to channel.name, new_message_path(channel.name) %>
+    </li>
+    <%end%>
+</ul>

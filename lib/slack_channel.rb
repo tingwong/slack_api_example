@@ -1,6 +1,4 @@
 require 'httparty'
-
-TOKEN = "xoxp-105525597987-112192557396-177601898870-a3911437965a715befad391ff017982b"
 BASE_URL = "https://slack.com/api/"
 
 class SlackChannel
@@ -15,7 +13,7 @@ class SlackChannel
   def send(message)
     #Extra Data
     query_params = {
-      "token" => TOKEN,
+      "token" => ENV["SLACK_API_TOKEN"],
       "channel" => @name,
       "text" => message,
       "username" => "Roberts-Robit",
@@ -34,7 +32,7 @@ class SlackChannel
   end
 
   def self.all
-    url = "#{BASE_URL}channels.list?token=#{TOKEN}"
+    url = "#{BASE_URL}channels.list?token=#{ENV["SLACK_API_TOKEN"]}"
     response = HTTParty.get(url).parsed_response
 
     if response["ok"]
